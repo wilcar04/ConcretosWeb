@@ -1,0 +1,107 @@
+﻿
+@model Concretos.Models.Measure
+@{
+    ViewData["Title"] = "Medidas";
+
+    IDictionary<string, string> labels = new Dictionary<string, string>();
+    labels["title"] = "Medidas";
+    labels["date"] = "Fecha";
+    labels["fabricationMethod"] = "Método de fabricación";
+    labels["reactive"] = "Reactivo";
+    labels["fabricationMethodZero"] = "Seleccione un método de fabricación";
+    labels["reactiveZero"] = "Seleccione un reactivo";
+    labels["experimentalData"] = "Datos experimentales";
+    labels["experimentalPorosity"] = "Porosidad experimental";
+
+}
+
+<form asp-controller="Measure" asp-action="Management" method="post">
+
+    <h1>@labels["title"]</h1>
+
+    <div class="form-group mb-2 row">
+
+        <div class="col-sm-3">
+            <label for="date" class="col-form-label">@labels["date"]</label>
+        </div>
+
+        <div class="col-auto">
+            <input id="date" type="date" class="form-control" asp-for="Date">
+        </div>
+
+    </div>
+
+    <div class="form-group mb-2 row">
+
+        <div class="col-sm-3">
+            <label for="fabrication-method" class="col-form-label">@labels["fabricationMethod"]</label>
+        </div>
+
+        <div class="col-sm-4">
+            <select id="fabrication-method" class="form-select" asp-for="FabricationMethodId">
+
+                <option value="0">
+                    @labels["fabricationMethodZero"]
+                </option>
+
+                @foreach (var fabricationMethod in ViewData["FabricationMethods"] as List<FabricationMethod>)
+                {
+                    <option value="@fabricationMethod.Id">
+                        @fabricationMethod.Name
+                    </option>
+                }
+
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group mb-2 row">
+
+        <div class="col-sm-3">
+            <label for="inputPassword6" class="col-form-label">@labels["reactive"]</label>
+        </div>
+
+        <div class="col-sm-4">
+
+            <select id="reactive" class="form-select" asp-for="ReactiveId">
+
+                <option value="0">
+                    @labels["reactiveZero"]
+                </option>
+
+                @foreach (var reactive in ViewData["Reactives"] as List<Reactive>)
+                {
+                    <option value="@reactive.Id">
+                        @reactive.Name
+                    </option>
+                }
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="shadow p-3">
+
+        <div class="form-group mb-2 row">
+
+            <div class="col-sm-2">
+                <label for="experimental-porosity" class="col-form-label">@labels["experimentalPorosity"]</label>
+            </div>
+
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="experimental-porosity" asp-for="ExperimentalPorosity">
+            </div>
+
+        </div>
+
+        <hr />
+
+    </div>
+
+
+    @*<button type="submit">Iniciar sesión</button>*@
+
+</form>
