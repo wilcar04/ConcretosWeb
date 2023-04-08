@@ -363,5 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #AppSettings
-concretos/appsettings.json
 /Concretos/appsettings.json
