@@ -4,22 +4,89 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            border: 3px solid #1976D2;
+            margin: 5% auto;
+            max-width: 500px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+            form:hover {
+                box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.2);
+            }
+
+        input[type=email], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #1976D2;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+            input[type=email]:focus, input[type=password]:focus {
+                border-color: #0D47A1;
+            }
+
+        button[type=submit] {
+            background-color: #1976D2;
+            color: white;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            button[type=submit]:hover {
+                background-color: #0D47A1;
+            }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type=checkbox] {
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+
+    </style>
+
 </head>
 <body>
     <form asp-controller="Access" asp-action="Login" method="post">
-        <h1>Login</h1>
-        <input type="email" placeholder="Correo" asp-for="Email" />
-        <input type="password" placeholder="Contraseña" asp-for="Password" />
-
+        <h1 style="color: #1976D2;">Login</h1>
+        <label for="email" style="color: #1976D2;">Correo:</label>
+        <input type="email" id="email" placeholder="Correo" asp-for="Email" required>
+        <br>
+        <label for="password" style="color: #1976D2;">Contraseña:</label>
+        <input type="password" id="password" placeholder="Contraseña" asp-for="Password" required>
+        <br>
         <label>
-            <input type="checkbox" asp-for="KeepLoggedIn"/>
-            Mantener sesión iniciada
+            <input type="checkbox" asp-for="KeepLoggedIn" style="margin-top: 10px; margin-right: 5px;">
+            <span style="color: #1976D2;">Mantener sesión iniciada</span>
         </label>
+        <br>
         <button type="submit">Iniciar sesión</button>
 
         @if (ViewData["ValidateMessage"] != null)
