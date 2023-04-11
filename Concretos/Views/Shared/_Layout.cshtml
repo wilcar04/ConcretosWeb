@@ -1,9 +1,12 @@
 ﻿@{
     var title = "QualitySolid";
+
     IDictionary<string, string> labels = new Dictionary<string, string>()
-            {
-                ["logOut"] = "Cerrar sesión"
-            };
+    {
+        ["logOut"] = "Cerrar sesión",
+        ["studies"] = "Estudios",
+        ["users"] = "Usuarios"
+    };
 }
 
 <!DOCTYPE html>
@@ -11,13 +14,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Concretos</title>
+    <title>@ViewData["Title"] - @title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Concretos.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
@@ -40,22 +44,52 @@
                 </div>
             </div>
         </nav>
-
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="container-fluid row flex-nowrap">
+        <div class="col-2">
+            <div class="side-bar d-flex flex-column flex-shrink-0 p-3 bg-white">
+                <ul class="nav nav-pills flex-column">
+                    <li>
+                        <a href="#" class="nav-link side-bar-link text-dark">
+                            <span>
+                                <i class="fa-sharp fa-solid fa-users"></i>
+                                @labels["users"]
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link side-bar-link text-dark" aria-current="page">
+                            <span>
+                                <i class="fa-solid fa-chart-pie"></i>
+                                @labels["studies"]
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="p-3">
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Concretos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - @title
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/measure.js"></script>
+    <script src="~/js/util.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

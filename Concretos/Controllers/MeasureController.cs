@@ -10,6 +10,7 @@ namespace Concretos.Controllers
         private readonly ApplicationDbContext _db;
         private readonly List<FabricationMethod> FabricationMethods;
         private readonly List<Reactive> Reactives;
+        private Measure Measure { get; set; }
 
         public MeasureController(ApplicationDbContext db)
         {
@@ -35,7 +36,9 @@ namespace Concretos.Controllers
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
 
-            return View();
+            this.Measure = new Measure();
+
+            return View(this.Measure);
         }
 
         [HttpPost]
@@ -44,7 +47,9 @@ namespace Concretos.Controllers
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
 
-            return View();
+            measure.Id = 1;
+
+            return View(measure);
         }
 
     }

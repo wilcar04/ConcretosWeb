@@ -8,12 +8,14 @@ namespace Concretos.Models
 
         public int Id { get; set; }
 
+        public int Consecutive { get; set; }
+
         [Required]
         public DateOnly Date { get; set; }
 
         [Required]
         public float ExperimentalPorosity { get; set; }
-
+        
         public float ExpectedDensity { get; set; }
 
         public float ExpectedResistence { get; set; }

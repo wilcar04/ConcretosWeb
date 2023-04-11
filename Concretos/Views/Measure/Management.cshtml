@@ -1,23 +1,34 @@
-﻿
-@model Concretos.Models.Measure
+﻿@model Concretos.Models.Measure
 @{
     ViewData["Title"] = "Medidas";
 
-    IDictionary<string, string> labels = new Dictionary<string, string>();
-    labels["title"] = "Medidas";
-    labels["date"] = "Fecha";
-    labels["fabricationMethod"] = "Método de fabricación";
-    labels["reactive"] = "Reactivo";
-    labels["fabricationMethodZero"] = "Seleccione un método de fabricación";
-    labels["reactiveZero"] = "Seleccione un reactivo";
-    labels["experimentalData"] = "Datos experimentales";
-    labels["experimentalPorosity"] = "Porosidad experimental";
+    IDictionary<string, string> labels = new Dictionary<string, string>()
+            {
+                ["title"] = "Medidas",
+                ["measure"] = "Medida N°: ",
+                ["date"] = "Fecha",
+                ["fabricationMethod"] = "Método de fabricación",
+                ["reactive"] = "Reactivo",
+                ["fabricationMethodZero"] = "Seleccione un método de fabricación",
+                ["reactiveZero"] = "Seleccione un reactivo",
+                ["experimentalData"] = "Datos experimentales",
+                ["experimentalPorosity"] = "Porcentaje de porosidad (Entre 0% y 100%)",
+                ["expectedDensity"] = "Densidad esperada [kg/m³]",
+                ["expectedResistence"] = "Resistencia esperada [MPa]",
+                ["calculationButton"] = "Calcular valores esperados",
+                ["saveButton"] = "Guardar",
+                ["deleteButton"] = "Eliminar",
+                ["experimentalDataButton"] = "Ingresar datos experimentales"
+            };
 
 }
 
-<form asp-controller="Measure" asp-action="Management" method="post">
+<form asp-controller="Measure" asp-action="Management" id="form-measure" method="post" autocomplete="off">
 
-    <h1>@labels["title"]</h1>
+    @if (Model.Id > 0)
+    {
+        <h1>@labels["measure"] @Model.Consecutive</h1>
+    }
 
     <div class="form-group mb-2 row">
 
@@ -83,25 +94,79 @@
 
     </div>
 
-    <div class="shadow p-3">
+    <div class="shadow p-3 mb-2">
 
-        <div class="form-group mb-2 row">
+        <div class="row align-items-start mb-2">
 
-            <div class="col-sm-2">
+            <div class="col-sm-5">
                 <label for="experimental-porosity" class="col-form-label">@labels["experimentalPorosity"]</label>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="experimental-porosity" asp-for="ExperimentalPorosity">
+                    <button type="button" class="btn btn-outline-success" id="btn-calculate">@labels["calculationButton"]</button>
+                </div>
+
             </div>
 
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="experimental-porosity" asp-for="ExperimentalPorosity">
+            <div class="col-sm">
+                <label for="experimental-porosity" class="col-form-label">@labels["expectedDensity"]</label>
+                <input type="text" class="form-control" id="expected-density" asp-for="ExpectedDensity" readonly>
+            </div>
+
+            <div class="col-sm">
+                <label for="experimental-porosity" class="col-form-label">@labels["expectedResistence"]</label>
+                <input type="text" class="form-control" id="expected-resistence" asp-for="ExpectedResistence" readonly>
             </div>
 
         </div>
 
-        <hr />
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+        @if (Model.Id > 0)
+        {
+            <button class="btn btn-primary me-md-2" type="submit">@labels["experimentalDataButton"]</button>
+        }
+
+        <button class="btn btn-success me-md-2" type="submit">@labels["saveButton"]</button>
+
+        @if (Model.Id > 0)
+        {
+            <button class="btn btn-danger" type="button">@labels["deleteButton"]</button>
+        }
 
     </div>
 
-
-    @*<button type="submit">Iniciar sesión</button>*@
-
 </form>
+
+<div id="table-measures">
+    <table class="table table-bordered">
+        
+        <thead>
+
+            <tr>
+                <th width="20%">Número de muestra</th>
+                <th width="20%">Fecha de muestra</th>
+                <th width="30%">Porosidad experimental</th>
+                <th>Margen de error</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @for(int i = 0; i <= 100; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>01/02/2023</td>
+                    <td>15%</td>
+                    <td>3,7%</td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>

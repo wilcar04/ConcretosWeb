@@ -1,22 +1,36 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-fieldset {
-    padding: 5px;
+.side-bar {
+    height: calc(100vh - 140px);
+    border-right: 3px solid;
+    border-image: linear-gradient(to bottom, #EDEDED, #FFFFFF) 1;
+}
+
+.side-bar-link:hover {
+    border: 2px solid !important;
+    border-color: #198754 !important;
+}
+
+#table-measures {
+    border: 2px solid !important;
+    border-color: lightgrey !important;
+    margin-top: 10px;
+    overflow: auto;
 }
