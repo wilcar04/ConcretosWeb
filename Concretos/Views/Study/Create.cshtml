@@ -1,6 +1,6 @@
 ﻿@model Study;
 
-<form method="post" asp-controller="Study" asp-action="Create" autocomplete="off">
+<form method="post" asp-controller="Study" asp-action="Create" autocomplete="off" class="small-form">
 	<input id="user-id" type="hidden" asp-for="UserId" />
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
@@ -17,10 +17,15 @@
 			<input asp-for="CreatedDateTime" type="date" />
 			<span asp-validation-for="CreatedDateTime" class="text-danger"></span>
 		</div>
-		<button type="submit" class="btn btn-primary" style="width:150px">Crear</button>
-		<a asp-controller="Study" asp-action="Index" class="btn btn-secondary" style="width:150px">
-			Volver
-		</a>
+
+		<hr />
+
+		<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			<button type="submit" class="btn btn-primary" style="width:150px">Crear</button>
+			<a asp-controller="Study" asp-action="Index" class="btn btn-secondary" style="width:150px">
+				Regresar
+			</a>
+		</div>
 	</div>
 </form>
 
