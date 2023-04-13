@@ -69,8 +69,9 @@ input[type=checkbox] {
 
 .side-bar {
     height: calc(100vh - 140px);
-    border-right: 3px solid;
-    border-image: linear-gradient(to bottom, #EDEDED, #FFFFFF) 1;
+    border-right: 2px solid;
+    background-color: #f2f2f2;
+    border-image: linear-gradient(to bottom, gray, #f2f2f2) 1;
 }
 
 .side-bar-link:hover {
@@ -79,8 +80,16 @@ input[type=checkbox] {
 }
 
 #table-measures {
-    border: 2px solid !important;
+    border: 1px solid !important;
     border-color: lightgrey !important;
     margin-top: 10px;
     overflow: auto;
+}
+
+.small-btn {
+    width: auto !important;
+}
+
+th {
+    background-color: lightgrey !important;
 }

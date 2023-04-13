@@ -31,7 +31,7 @@
             @foreach(var obj in Model)
             {
                 <tr>
-                    <td><a href="#">@obj.Id</a></td>
+                    <td><a href="/Measure/Management?study-id=@obj.Id">@obj.Id</a></td>
                     <td>@obj.Name</td>
                     <td>@obj.CreatedDateTime</td>
                 </tr>

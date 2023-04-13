@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="~/Concretos.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <form asp-controller="Access" asp-action="Login" method="post">
+    <form class="small-form" asp-controller="Access" asp-action="Login" method="post">
         <h1 style="color: #1976D2;">Login</h1>
         <label for="email" style="color: #1976D2;">Correo:</label>
         <input type="email" id="email" placeholder="Correo" asp-for="Email" required>
@@ -26,7 +26,7 @@
             <span style="color: #1976D2;">Mantener sesión iniciada</span>
         </label>
         <br>
-        <button type="submit">Iniciar sesión</button>
+        <button class="btn btn-primary me-md-2" type="submit">Iniciar sesión</button>
 
         @if (ViewData["ValidateMessage"] != null)
         {

@@ -10,6 +10,7 @@ namespace Concretos.Controllers
         private readonly ApplicationDbContext _db;
         private readonly List<FabricationMethod> FabricationMethods;
         private readonly List<Reactive> Reactives;
+        private List<Measure> Measures; 
         private Measure Measure { get; set; }
 
         public MeasureController(ApplicationDbContext db)
@@ -31,12 +32,19 @@ namespace Concretos.Controllers
                               }).ToList();
         }
 
-        public IActionResult Management()
+        [HttpGet()]
+        public IActionResult Management([FromQuery(Name = "study-id")] int studyId)
         {
+            this.loadMeasures();
+
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
+            ViewData["Measures"] = this.Measures;
 
             this.Measure = new Measure();
+            this.Measure.Id = 0;
+            this.Measure.StudyId = studyId;
+            this.Measure.Study = _db.Studies.Find(studyId);
 
             return View(this.Measure);
         }
@@ -47,9 +55,27 @@ namespace Concretos.Controllers
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
 
-            measure.Id = 1;
+            if (ModelState.IsValid)
+            {
+                _db.Measures.Add(measure);
+                _db.SaveChanges();
+                this.loadMeasures();
+                ViewData["Measures"] = this.Measures;
+            }
 
             return View(measure);
+        }
+
+        private void loadMeasures() 
+        {
+            this.Measures = (from element in _db.Measures
+                            select new Measure
+                            {
+                                Id = element.Id,
+                                Consecutive = element.Consecutive,
+                                Date = element.Date,
+                                ExperimentalPorosity = element.ExperimentalPorosity
+                            }).ToList();
         }
 
     }
