@@ -1,15 +1,19 @@
 html {
     font-size: 14px;
+<<<<<<< HEAD
     position: relative;
     min-height: 100%;
+=======
+>>>>>>> feature/measures
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
+<<<<<<< HEAD
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 60px;
@@ -69,4 +73,31 @@ label {
 input[type=checkbox] {
     margin-top: 10px;
     margin-right: 5px;
+=======
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.side-bar {
+    height: calc(100vh - 140px);
+    border-right: 3px solid;
+    border-image: linear-gradient(to bottom, #EDEDED, #FFFFFF) 1;
+}
+
+.side-bar-link:hover {
+    border: 2px solid !important;
+    border-color: #198754 !important;
+}
+
+#table-measures {
+    border: 2px solid !important;
+    border-color: lightgrey !important;
+    margin-top: 10px;
+    overflow: auto;
+>>>>>>> feature/measures
 }
