@@ -52,7 +52,12 @@ namespace Concretos.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), properties);
 
-                return RedirectToAction("Index", "Home");
+                var httpParams = new RouteValueDictionary() 
+                {
+                    { "user_id", userFromDb.Id }
+                }; 
+
+                return RedirectToAction("Index", "Home", httpParams);
             }
 
             ViewData["ValidateMessage"] = "user not found";

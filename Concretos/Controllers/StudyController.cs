@@ -38,8 +38,8 @@ namespace Concretos.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(obj);
-           
         }
     }
 }

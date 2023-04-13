@@ -8,12 +8,17 @@ namespace Concretos.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string Name{ get; set; }
+
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+
         [Required]
         public int UserId { get; set; }
+
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
+
     }
 }
