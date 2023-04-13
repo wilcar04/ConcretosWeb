@@ -28,8 +28,10 @@ namespace Concretos.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Login(VMLogin modelLogin)
-        {
-            var userFromDb = _db.Users.Find(modelLogin.Email);
+        {   
+            var userFromDb = _db.Users
+                    .Where(b => b.Email == modelLogin.Email)
+                    .FirstOrDefault();
 
             if (userFromDb != null && userFromDb.Password == modelLogin.Password)
             {
