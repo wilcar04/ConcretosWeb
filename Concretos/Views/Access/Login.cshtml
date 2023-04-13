@@ -4,7 +4,6 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -15,14 +14,18 @@
 </head>
 <body>
     <form asp-controller="Access" asp-action="Login" method="post">
-        <h1>Login</h1>
-        <input type="email" placeholder="Correo" asp-for="Email" />
-        <input type="password" placeholder="Contraseña" asp-for="Password" />
-
+        <h1 style="color: #1976D2;">Login</h1>
+        <label for="email" style="color: #1976D2;">Correo:</label>
+        <input type="email" id="email" placeholder="Correo" asp-for="Email" required>
+        <br>
+        <label for="password" style="color: #1976D2;">Contraseña:</label>
+        <input type="password" id="password" placeholder="Contraseña" asp-for="Password" required>
+        <br>
         <label>
-            <input type="checkbox" asp-for="KeepLoggedIn"/>
-            Mantener sesión iniciada
+            <input type="checkbox" asp-for="KeepLoggedIn" style="margin-top: 10px; margin-right: 5px;">
+            <span style="color: #1976D2;">Mantener sesión iniciada</span>
         </label>
+        <br>
         <button type="submit">Iniciar sesión</button>
 
         @if (ViewData["ValidateMessage"] != null)
