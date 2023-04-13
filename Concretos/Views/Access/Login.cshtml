@@ -8,70 +8,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
-
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f2f2f2;
-        }
-
-        form {
-            border: 3px solid #1976D2;
-            margin: 5% auto;
-            max-width: 500px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-            form:hover {
-                box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.2);
-            }
-
-        input[type=email], input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #1976D2;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease-in-out;
-        }
-
-            input[type=email]:focus, input[type=password]:focus {
-                border-color: #0D47A1;
-            }
-
-        button[type=submit] {
-            background-color: #1976D2;
-            color: white;
-            padding: 12px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-            button[type=submit]:hover {
-                background-color: #0D47A1;
-            }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type=checkbox] {
-            margin-top: 10px;
-            margin-right: 5px;
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Concretos.styles.css" asp-append-version="true" />
 </head>
 <body>
     <form asp-controller="Access" asp-action="Login" method="post">
