@@ -1,31 +1,93 @@
 ﻿@model User
 @{
     ViewData["Title"] = "Create";
+
+    IDictionary<string, string> labels = new Dictionary<string, string>()
+            {
+                ["names"] = "Nombres",
+                ["lastNames"] = "Apellidos",
+                ["email"] = "E-Mail",
+                ["password"] = "Contraseña",
+                ["confirmPassword"] = "Confirmar contraseña",
+                ["saveButton"] = "Guardar",
+                ["backButton"] = "Regresar"
+            };
 }
 
-<form method="post" class="small-form">
+<form method="post" autocomplete="off">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Crear usuario</h2>
             <hr />
         </div>
-        <div class="mb-3">
-            <label asp-for="Email"></label>
-            <input type="email" asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+
+        <div class="form-group mb-3 row">
+
+            <div class="col-md-2">
+                <label asp-for="Names">@labels["names"]</label>
+            </div>
+
+            <div class="col-md-10">
+                <input type="text" asp-for="Names" class="form-control" minlength="5" />
+                <span asp-validation-for="Names" class="text-danger"></span>
+            </div>
+
         </div>
-        <div class="mb-3">
-            <label asp-for="Password"></label>
-            <input type="password" asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
+
+        <div class="form-group mb-3 row">
+
+            <div class="col-md-2">
+                <label asp-for="LastNames">@labels["lastNames"]</label>
+            </div>
+
+            <div class="col-md-10">
+                <input type="text" asp-for="LastNames" class="form-control" minlength="5" />
+                <span asp-validation-for="LastNames" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <div class="col-md-2">
+                <label asp-for="Email">@labels["email"]</label>
+            </div>
+
+            <div class="col-md-10">
+                <input type="email" asp-for="Email" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <div class="col-md-2">
+                <label asp-for="Password">@labels["password"]</label>
+            </div>
+
+            <div class="col-md-5">
+                <input placeholder="@labels["password"]" type="password" asp-for="Password" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-5">
+                <input id="confirm-password" placeholder="@labels["confirmPassword"]" type="password" asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
         </div>
 
         <hr />
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <button type="submit" class="btn btn-primary" style="width:150px">Agregar</button>
-            <a asp-controller="User" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                Regresar
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                @labels["saveButton"]
+            </button>
+            <a asp-controller="User" asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                @labels["backButton"]
             </a>
         </div>
 

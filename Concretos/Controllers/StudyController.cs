@@ -8,6 +8,7 @@ namespace Concretos.Controllers
     {
 
         private readonly ApplicationDbContext _db;
+        private Study Study { get; set; }
 
         public StudyController(ApplicationDbContext db)
         {
@@ -24,7 +25,9 @@ namespace Concretos.Controllers
         //GET
         public IActionResult Create()
         {
-            return View();
+            this.Study = new Study();
+
+            return View(this.Study);
         }
 
         //POST
