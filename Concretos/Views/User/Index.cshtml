@@ -2,6 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    IDictionary<string, string> labels = new Dictionary<string, string>()
+            {
+                ["addUser"] = "Crear usuario"
+            };
 }
 
 <div class="container p-3">
@@ -12,7 +17,8 @@
         </div>
         <div class="col-6 text-end">
             <a asp-controller="User" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i>&nbsp;  Añadir usuario
+                <i class="fas fa-user-plus"></i>
+                @labels["addUser"]
             </a>
         </div>
     </div>
@@ -21,7 +27,7 @@
     <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>
+                <th class="text-center">
                     Correo
                 </th>
             </tr>

@@ -8,8 +8,8 @@ namespace Concretos.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "El campo correo electrónico es obligatorio")]
-        [EmailAddress(ErrorMessage = "El correo electrónico no es válido")]
+        [Required(ErrorMessage = "El campo correo electrónico es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El correo electrónico no es válido.")]
         public string Email { get; set; }
         
         [Required(ErrorMessage = "La contraseña es obligatoria.")]

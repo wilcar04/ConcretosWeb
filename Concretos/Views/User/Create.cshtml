@@ -9,7 +9,8 @@
                 ["email"] = "E-Mail",
                 ["password"] = "Contraseña",
                 ["confirmPassword"] = "Confirmar contraseña",
-                ["saveButton"] = "Guardar"
+                ["saveButton"] = "Guardar",
+                ["backButton"] = "Regresar"
             };
 }
 
@@ -66,12 +67,12 @@
             </div>
 
             <div class="col-md-5">
-                <input placeholder="@labels["password"]"  type="password" asp-for="Password" class="form-control" autocomplete="new-password" />
+                <input placeholder="@labels["password"]" type="password" asp-for="Password" class="form-control" autocomplete="new-password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="col-md-5">
-                <input id="confirm-password" placeholder="@labels["confirmPassword"]" type="password" asp-for="ConfirmPassword"  class="form-control" />
+                <input id="confirm-password" placeholder="@labels["confirmPassword"]" type="password" asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
 
@@ -80,9 +81,13 @@
         <hr />
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-primary" style="width:150px">@labels["saveButton"]</button>
-            <a asp-controller="User" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                Regresar
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                @labels["saveButton"]
+            </button>
+            <a asp-controller="User" asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                @labels["backButton"]
             </a>
         </div>
 

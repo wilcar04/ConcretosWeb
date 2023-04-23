@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<Study>;
 @{
     ViewData["Title"] = "Index";
-}
 
-    
+    IDictionary<string, string> labels = new Dictionary<string, string>()
+            {
+                ["addStudy"] = "Crear estudio"
+            };
+}
 
 <div class="container p-3">
     <div class="row pt-4">
@@ -12,33 +15,33 @@
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Study" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Agregar nuevo estudio
+                <i class="fas fa-file-alt"></i>
+                @labels["addStudy"]
             </a>
         </div>
     </div>
-    <br /><br />
 
+    <br />
+    <br />
 
-<table class="table table-bordered table-striped" style="width:100%">
+    <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nombre del estudio</th>
-                <th>Fecha</th>
+                <th width="20%" class="text-center">Fecha</th>
             </tr>
         </thead>
         <tbody>
-            @foreach(var obj in Model)
+            @foreach (var obj in Model)
             {
                 <tr>
-                    <td><a href="/Measure/Management?study-id=@obj.Id">@obj.Id</a></td>
-                    <td>@obj.Name</td>
-                    <td>@obj.CreatedDateTime</td>
+                    <td><a href="/Measure/Management?study-id=@obj.Id">@obj.Name</a></td>
+                    <td width="20%" class="text-center">@obj.CreatedDateTime.ToString("dd/MM/yyyy")</td>
                 </tr>
 
             }
 
         </tbody>
-</table>
+    </table>
 </div>
 
