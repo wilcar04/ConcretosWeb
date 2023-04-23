@@ -1,10 +1,7 @@
 html {
     font-size: 14px;
-<<<<<<< HEAD
     position: relative;
     min-height: 100%;
-=======
->>>>>>> feature/measures
 }
 
 @media (min-width: 768px) {
@@ -13,16 +10,15 @@ html {
     }
 }
 
-<<<<<<< HEAD
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 60px;
     background-color: #f2f2f2;
 }
 
-form {
-    border: 3px solid #1976D2;
+.small-form {
     margin: 5% auto;
+    border: 3px solid #1976D2;
     max-width: 500px;
     padding: 20px;
     background-color: white;
@@ -30,40 +26,9 @@ form {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-    form:hover {
-        box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.2);
-    }
-
-input[type=email], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #1976D2;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease-in-out;
+.small-form:hover {
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.2);
 }
-
-    input[type=email]:focus, input[type=password]:focus {
-        border-color: #0D47A1;
-    }
-
-button[type=submit] {
-    background-color: #1976D2;
-    color: white;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease-in-out;
-}
-
-    button[type=submit]:hover {
-        background-color: #0D47A1;
-    }
 
 label {
     display: block;
@@ -73,31 +38,31 @@ label {
 input[type=checkbox] {
     margin-top: 10px;
     margin-right: 5px;
-=======
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
 }
 
 .side-bar {
     height: calc(100vh - 140px);
-    border-right: 3px solid;
-    border-image: linear-gradient(to bottom, #EDEDED, #FFFFFF) 1;
+    border-right: 2px solid;
+    background-color: #f2f2f2;
+    border-image: linear-gradient(to bottom, gray, #f2f2f2) 1;
 }
 
 .side-bar-link:hover {
     border: 2px solid !important;
-    border-color: #198754 !important;
+    border-color: var(--bs-blue) !important;
 }
 
 #table-measures {
-    border: 2px solid !important;
+    border: 1px solid !important;
     border-color: lightgrey !important;
     margin-top: 10px;
     overflow: auto;
->>>>>>> feature/measures
+}
+
+.small-btn {
+    width: auto !important;
+}
+
+th {
+    background-color: lightgrey !important;
 }

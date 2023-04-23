@@ -1,33 +1,72 @@
 ﻿@model Study;
-
+@{
+    IDictionary<string, string> labels = new Dictionary<string, string>()
+            {
+                ["name"] = "Nombre",
+                ["date"] = "Fecha",
+                ["saveButton"] = "Guardar",
+                ["backButton"] = "Regresar"
+            };
+}
 <form method="post" asp-controller="Study" asp-action="Create" autocomplete="off">
-	<input id="user-id" type="hidden" asp-for="UserId" />
-	<div class="border p-3 mt-4">
-		<div class="row pb-2">
-			<h2 class="text-primary">Crear estudio</h2>
-			<hr/>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Name">Nombre</label>
-			<input asp-for="Name" class="form-control"/>
-			<span asp-validation-for="Name" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="CreatedDateTime">Fecha</label>
-			<input asp-for="CreatedDateTime" type="date" />
-			<span asp-validation-for="CreatedDateTime" class="text-danger"></span>
-		</div>
-		<button type="submit" class="btn btn-primary" style="width:150px">Crear</button>
-		<a asp-controller="Study" asp-action="Index" class="btn btn-secondary" style="width:150px">
-			Volver
-		</a>
-	</div>
+    <input id="user-id" type="hidden" asp-for="UserId" />
+    <div class="border p-3 mt-4">
+
+        <div class="row pb-2">
+            <h2 class="text-primary">Crear estudio</h2>
+            <hr />
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <div class="col-md-2">
+                <label asp-for="Name">@labels["name"]</label>
+            </div>
+
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" minlength="5" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <div class="col-md-2">
+                <label asp-for="CreatedDateTime">@labels["date"]</label>
+            </div>
+
+            <div class="col-md-10">
+
+                <div class="col-md-3">
+                    <input asp-for="CreatedDateTime" type="date" class="form-control" />
+                </div>
+                
+                <span asp-validation-for="CreatedDateTime" class="text-danger"></span>
+            </div>
+
+        </div>
+
+
+        <hr />
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                @labels["saveButton"]
+            </button>
+            <a asp-controller="Study" asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                @labels["backButton"]
+            </a>
+        </div>
+    </div>
 </form>
 
 @section Scripts{
-	@{
-		<partial name="_ValidationScriptsPartial" />
-	}
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
 
 

@@ -12,6 +12,7 @@ namespace Concretos.Data
         public DbSet<FabricationMethod> FabricationMethods { get; set; }
         public DbSet<Reactive> Reactives { get; set; }
         public DbSet<Ecuation> Ecuations { get; set; }
+        public DbSet<Measure> Measures { get; set; }
 
     }
 }
