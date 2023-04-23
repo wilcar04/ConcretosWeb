@@ -15,19 +15,22 @@ namespace Concretos.Models
         public DateTime Date { get; set; }
 
         [Required]
+        [Range(0, 100, ErrorMessage = "Se debe establecer un valor entre 0% y 100%.")]
         public float ExperimentalPorosity { get; set; }
-        
+
         public float ExpectedDensity { get; set; }
 
         public float ExpectedResistence { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Se debe seleccionar un método de fabricación.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Se debe seleccionar un método de fabricación.")]
         public int FabricationMethodId { get; set; }
 
         [ForeignKey("FabricationMethodId")]
         public virtual FabricationMethod? FabricationMethod { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Se debe seleccionar un reactivo.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Se debe seleccionar un reactivo.")]
         public int ReactiveId { get; set; }
 
         [ForeignKey("ReactiveId")]

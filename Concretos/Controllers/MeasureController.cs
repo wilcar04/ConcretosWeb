@@ -45,6 +45,7 @@ namespace Concretos.Controllers
             this.Measure.Id = 0;
             this.Measure.StudyId = studyId;
             this.Measure.Study = _db.Studies.Find(studyId);
+            this.Measure.Date = DateTime.Now;
 
             return View(this.Measure);
         }
