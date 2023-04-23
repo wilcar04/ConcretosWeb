@@ -1,39 +1,47 @@
 ﻿using Concretos.Data;
 using Concretos.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Concretos.Controllers
 {
-    public class UserController : Controller
+    public class StudyController : Controller
     {
-        ApplicationDbContext _db;
-        public UserController(ApplicationDbContext db)
+
+        private readonly ApplicationDbContext _db;
+        private Study Study { get; set; }
+
+        public StudyController(ApplicationDbContext db)
         {
             _db = db;
         }
 
+
         public IActionResult Index()
         {
-            IEnumerable<User> usersFromDb = _db.Users;
-            return View(usersFromDb);
+            IEnumerable<Study> objStudyList = _db.Studies;
+            return View(objStudyList);
         }
 
+        //GET
         public IActionResult Create()
         {
-            return View();
+            this.Study = new Study();
+
+            return View(this.Study);
         }
 
+        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(User obj)
+        public IActionResult Create(Study obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Users.Add(obj);
+                _db.Studies.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(obj);
         }
     }

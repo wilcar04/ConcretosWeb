@@ -25,6 +25,8 @@
 
 <form asp-controller="Measure" asp-action="Management" id="form-measure" method="post" autocomplete="off">
 
+    <input type="hidden" class="form-control" asp-for="StudyId">
+
     @if (Model.Id > 0)
     {
         <h1>@labels["measure"] @Model.Consecutive</h1>
@@ -63,6 +65,11 @@
                 }
 
             </select>
+
+        </div>
+
+        <div class="col-sm-5">
+            <span asp-validation-for="FabricationMethodId" class="text-danger"></span>
         </div>
 
     </div>
@@ -92,6 +99,10 @@
 
         </div>
 
+        <div class="col-sm-5">
+            <span asp-validation-for="ReactiveId" class="text-danger"></span>
+        </div>
+
     </div>
 
     <div class="shadow p-3 mb-2">
@@ -103,8 +114,10 @@
 
                 <div class="input-group">
                     <input type="text" class="form-control" id="experimental-porosity" asp-for="ExperimentalPorosity">
-                    <button type="button" class="btn btn-outline-success" id="btn-calculate">@labels["calculationButton"]</button>
+                    <button type="button" class="btn btn-outline-primary" id="btn-calculate">@labels["calculationButton"]</button>
                 </div>
+
+                <span asp-validation-for="ExperimentalPorosity" class="text-danger"></span>
 
             </div>
 
@@ -126,14 +139,23 @@
 
         @if (Model.Id > 0)
         {
-            <button class="btn btn-primary me-md-2" type="submit">@labels["experimentalDataButton"]</button>
+            <button class="btn small-btn btn-primary me-md-2" type="submit">
+                <i class="fas fa-vial"></i>
+                @labels["experimentalDataButton"]
+            </button>
         }
 
-        <button class="btn btn-success me-md-2" type="submit">@labels["saveButton"]</button>
+        <button class="btn small-btn btn-primary me-md-2" type="submit">
+            <i class="fas fa-save"></i>
+            @labels["saveButton"]
+        </button>
 
         @if (Model.Id > 0)
         {
-            <button class="btn btn-danger" type="button">@labels["deleteButton"]</button>
+            <button class="btn small-btn btn-danger" type="button">
+                <i class="fas fa-trash-alt"></i>
+                @labels["deleteButton"]
+            </button>
         }
 
     </div>
@@ -142,7 +164,7 @@
 
 <div id="table-measures">
     <table class="table table-bordered">
-        
+
         <thead>
 
             <tr>
@@ -156,17 +178,24 @@
 
         <tbody>
 
-            @for(int i = 0; i <= 100; i++)
+            @foreach (Measure measure in ViewData["Measures"] as List<Measure>)
             {
                 <tr>
-                    <td>@i</td>
-                    <td>01/02/2023</td>
-                    <td>15%</td>
-                    <td>3,7%</td>
+                    <td>@measure.Consecutive</td>
+                    <td>@measure.Date.ToString("dd/MM/yyyy")</td>
+                    <td>@measure.ExperimentalPorosity%</td>
+                    <td>0%</td>
                 </tr>
+
             }
 
         </tbody>
 
     </table>
 </div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

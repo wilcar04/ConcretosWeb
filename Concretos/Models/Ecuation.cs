@@ -17,7 +17,7 @@ namespace Concretos.Models
 
         public int ReactiveId { get; set; }
 
-        [ForeignKey("FabricationMethodId")]
+        [ForeignKey("ReactiveId")]
         public virtual Reactive Reactive { get; set; }
 
     }

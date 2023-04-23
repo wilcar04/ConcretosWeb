@@ -28,8 +28,10 @@ namespace Concretos.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Login(VMLogin modelLogin)
-        {
-            var userFromDb = _db.Users.Find(modelLogin.Email);
+        {   
+            var userFromDb = _db.Users
+                    .Where(b => b.Email == modelLogin.Email)
+                    .FirstOrDefault();
 
             if (userFromDb != null && userFromDb.Password == modelLogin.Password)
             {
@@ -50,7 +52,12 @@ namespace Concretos.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), properties);
 
-                return RedirectToAction("Index", "Home");
+                var httpParams = new RouteValueDictionary() 
+                {
+                    { "user_id", userFromDb.Id }
+                }; 
+
+                return RedirectToAction("Index", "Home", httpParams);
             }
 
             ViewData["ValidateMessage"] = "user not found";
