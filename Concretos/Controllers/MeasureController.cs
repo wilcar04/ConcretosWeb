@@ -35,7 +35,7 @@ namespace Concretos.Controllers
         [HttpGet()]
         public IActionResult Management([FromQuery(Name = "study-id")] int studyId)
         {
-            this.loadMeasures();
+            this.loadMeasures(studyId);
 
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
@@ -58,19 +58,33 @@ namespace Concretos.Controllers
 
             if (ModelState.IsValid)
             {
+                this.loadMeasures(measure.StudyId);
+
+                if (this.Measures.Count > 0)
+                {
+                    measure.Consecutive = this.Measures.Last().Consecutive + 1;
+                }
+                else 
+                {
+                    measure.Consecutive = 1;
+                }
+
                 _db.Measures.Add(measure);
                 _db.SaveChanges();
-                this.loadMeasures();
+
+                this.Measures.Add(measure);
                 ViewData["Measures"] = this.Measures;
             }
 
             return View(measure);
         }
 
-        private void loadMeasures() 
+        private void loadMeasures(int studyId) 
         {
             this.Measures = (from element in _db.Measures
-                            select new Measure
+                             where element.StudyId == studyId
+                             orderby element.Consecutive ascending
+                             select new Measure
                             {
                                 Id = element.Id,
                                 Consecutive = element.Consecutive,
