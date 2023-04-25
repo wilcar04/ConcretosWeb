@@ -56,10 +56,10 @@ namespace Concretos.Controllers
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
 
+            this.loadMeasures(measure.StudyId);
+
             if (ModelState.IsValid)
             {
-                this.loadMeasures(measure.StudyId);
-
                 if (this.Measures.Count > 0)
                 {
                     measure.Consecutive = this.Measures.Last().Consecutive + 1;
@@ -73,8 +73,9 @@ namespace Concretos.Controllers
                 _db.SaveChanges();
 
                 this.Measures.Add(measure);
-                ViewData["Measures"] = this.Measures;
             }
+
+            ViewData["Measures"] = this.Measures;
 
             return View(measure);
         }

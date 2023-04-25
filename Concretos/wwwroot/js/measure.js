@@ -8,6 +8,16 @@
     $('#experimental-porosity').keyup(function () {
         validatePorosity()
     });
+
+    // TODO: Borrar
+    $("#exampleModal").modal('show');
+    
+    $(document).ready(function () {
+        $("#btn-experimental-datamiBoton").click(function () {
+            $("#modal-experimental-data").modal();
+        });
+    });
+
 });
 
 function calculate() {

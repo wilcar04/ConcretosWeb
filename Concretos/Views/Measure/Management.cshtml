@@ -18,7 +18,9 @@
                 ["calculationButton"] = "Calcular valores esperados",
                 ["saveButton"] = "Guardar",
                 ["deleteButton"] = "Eliminar",
-                ["experimentalDataButton"] = "Ingresar datos experimentales"
+                ["experimentalDataButton"] = "Ingresar datos experimentales",
+                ["density"] = "Densidad [kg/m³]",
+                ["resistence"] = "Resistencia [MPa]"
             };
 
 }
@@ -139,7 +141,7 @@
 
         @if (Model.Id > 0)
         {
-            <button class="btn small-btn btn-primary me-md-2" type="submit">
+            <button id="btn-experimental-data" class="btn small-btn btn-primary me-md-2">
                 <i class="fas fa-vial"></i>
                 @labels["experimentalDataButton"]
             </button>
@@ -158,6 +160,59 @@
             </button>
         }
 
+    </div>
+
+    <div class="modal" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@labels["experimentalData"]</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group mb-2 row">
+
+                        <div class="col-sm-1">
+                            <label for="experimental-date" class="col-form-label">@labels["date"]</label>
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <input type="date" class="form-control" id="experimental-date" asp-for="ExperimentalDate">
+
+                        </div>
+
+                    </div>
+
+                    <div class="shadow p-3 mb-2">
+
+                        <div class="row align-items-start mb-2">
+
+                            <div class="col-sm">
+                                <label for="experimental-density" class="col-form-label">@labels["density"]</label>
+                                <input type="text" class="form-control" id="experimental-density" asp-for="ExperimentalDensity">
+                                <span asp-validation-for="ExperimentalDensity" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-sm">
+                                <label for="experimental-resistence" class="col-form-label">@labels["resistence"]</label>
+                                <input type="text" class="form-control" id="experimental-resistence" asp-for="ExperimentalResistence">
+                                <span asp-validation-for="ExperimentalResistence" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">@labels["saveButton"]</button>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </form>
