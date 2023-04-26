@@ -46,6 +46,7 @@ namespace Concretos.Controllers
             this.Measure.StudyId = studyId;
             this.Measure.Study = _db.Studies.Find(studyId);
             this.Measure.Date = DateTime.Now;
+            this.Measure.ExperimentalDate = DateTime.Now;
 
             return View(this.Measure);
         }
@@ -55,24 +56,31 @@ namespace Concretos.Controllers
         {
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
-
-            this.loadMeasures(measure.StudyId);
-
+            
             if (ModelState.IsValid)
             {
-                if (this.Measures.Count > 0)
+                if(measure.Id == 0)
                 {
-                    measure.Consecutive = this.Measures.Last().Consecutive + 1;
+                    this.loadMeasures(measure.StudyId);
+
+                    if (this.Measures.Count > 0)
+                    {
+                        measure.Consecutive = this.Measures.Last().Consecutive + 1;
+                    }
+                    else
+                    {
+                        measure.Consecutive = 1;
+                    }
+
+                    _db.Measures.Add(measure);
                 }
-                else 
+                else
                 {
-                    measure.Consecutive = 1;
+                    _db.Measures.Update(measure);
+                    this.loadMeasures(measure.StudyId);
                 }
 
-                _db.Measures.Add(measure);
                 _db.SaveChanges();
-
-                this.Measures.Add(measure);
             }
 
             ViewData["Measures"] = this.Measures;

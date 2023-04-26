@@ -28,6 +28,7 @@
 <form asp-controller="Measure" asp-action="Management" id="form-measure" method="post" autocomplete="off">
 
     <input type="hidden" class="form-control" asp-for="StudyId">
+    <input type="hidden" class="form-control" asp-for="Id" value="@Model.Id">
 
     @if (Model.Id > 0)
     {
@@ -141,7 +142,7 @@
 
         @if (Model.Id > 0)
         {
-            <button id="btn-experimental-data" class="btn small-btn btn-primary me-md-2">
+            <button type="button" id="btn-experimental-data" class="btn small-btn btn-primary me-md-2" onclick="modalExperimentalData()">
                 <i class="fas fa-vial"></i>
                 @labels["experimentalDataButton"]
             </button>
@@ -161,8 +162,8 @@
         }
 
     </div>
-
-    <div class="modal" id="exampleModal" tabindex="-1">
+    
+    <div class="modal" id="modal-experimental-data" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
 

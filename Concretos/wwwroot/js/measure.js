@@ -9,16 +9,11 @@
         validatePorosity()
     });
 
-    // TODO: Borrar
-    $("#exampleModal").modal('show');
-    
-    $(document).ready(function () {
-        $("#btn-experimental-datamiBoton").click(function () {
-            $("#modal-experimental-data").modal();
-        });
-    });
-
 });
+
+function modalExperimentalData() {
+    $('#modal-experimental-data').modal('show');
+}
 
 function calculate() {
     $('#expected-density').val(10);

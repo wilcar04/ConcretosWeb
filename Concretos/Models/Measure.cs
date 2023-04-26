@@ -54,20 +54,5 @@ namespace Concretos.Models
 
         #endregion
 
-
-        // TODO: No funciona
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (this.ExperimentalDate != default(DateTime) && this.ExperimentalDensity <= 0.0001f)
-            {
-                yield return new ValidationResult("La densidad experimental es obligatoria.");
-            }
-
-            if (this.ExperimentalDate != default(DateTime) && this.ExperimentalResistence <= 0.0001f)
-            {
-                yield return new ValidationResult("La resistencia experimental es obligatoria.");
-            }
-        }
-
     }
 }
