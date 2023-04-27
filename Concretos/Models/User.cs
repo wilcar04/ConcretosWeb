@@ -26,5 +26,8 @@ namespace Concretos.Models
 
         [Required(ErrorMessage = "El campo de apellidos es obligatorio.")]
         public string LastNames { get; set; }
-    }
+
+        [Required]
+        public bool Enable { get; set;} = false;
+    } 
 }

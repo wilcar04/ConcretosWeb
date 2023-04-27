@@ -11,6 +11,7 @@
 
 <div class="container p-3">
 
+
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">Lista de Usuarios</h2>
@@ -37,10 +38,36 @@
             {
                 <tr>
                     <td width="50%">
-                        @obj.Email
+                    <a href="/User/Create/@obj.Id">@obj.Email</a>
+                    </td>
+                    <td width="10%">
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <a type="button" class="btn-delete btn btn-danger btn-sm" onclick="ModalDeleteConfirmation()">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
 </div>
+<!-- Modal -->
+<div class="modal fade" id="delete-user-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserModalLabel">¿Estás seguro de que deseas eliminar este usuario?</h5>
+            </div>
+            <div class="modal-body">
+                <p>Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cancelar</button>
+                <button asp-controller="User" asp-action="Delete" type="button" class="btn-delete btn btn-danger btn-sm">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
