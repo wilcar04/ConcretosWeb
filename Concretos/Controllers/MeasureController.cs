@@ -32,21 +32,26 @@ namespace Concretos.Controllers
                               }).ToList();
         }
 
-        [HttpGet()]
-        public IActionResult Management([FromQuery(Name = "study-id")] int studyId)
+        [HttpGet("/Measure/Management/{measureId}")]
+        public IActionResult Management(int measureId, [FromQuery(Name = "study-id")] int studyId)
         {
+            this.Measure = _db.Measures.Find(measureId);
+
+            if (this.Measure == null)
+            {
+                this.Measure = new Measure();
+                this.Measure.Id = 0;
+                this.Measure.StudyId = studyId;
+                this.Measure.Study = _db.Studies.Find(studyId);
+                this.Measure.Date = DateTime.Now;
+                this.Measure.ExperimentalDate = DateTime.Now;
+            }
+
             this.loadMeasures(studyId);
 
             ViewData["FabricationMethods"] = this.FabricationMethods;
             ViewData["Reactives"] = this.Reactives;
             ViewData["Measures"] = this.Measures;
-
-            this.Measure = new Measure();
-            this.Measure.Id = 0;
-            this.Measure.StudyId = studyId;
-            this.Measure.Study = _db.Studies.Find(studyId);
-            this.Measure.Date = DateTime.Now;
-            this.Measure.ExperimentalDate = DateTime.Now;
 
             return View(this.Measure);
         }

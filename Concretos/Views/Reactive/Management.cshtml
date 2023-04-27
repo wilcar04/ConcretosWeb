@@ -1,19 +1,22 @@
-﻿@model Study;
+﻿@model Reactive;
 @{
+
+    ViewData["Title"] = "Reactivo";
+
     IDictionary<string, string> labels = new Dictionary<string, string>()
             {
                 ["name"] = "Nombre",
-                ["date"] = "Fecha",
                 ["saveButton"] = "Guardar",
                 ["backButton"] = "Regresar"
             };
+
 }
-<form method="post" asp-controller="Study" asp-action="Create" autocomplete="off">
-    <input id="user-id" type="hidden" asp-for="UserId" />
+<form method="post" asp-controller="Reactive" asp-action="Management" autocomplete="off">
+    
     <div class="border p-3 mt-4">
 
         <div class="row pb-2">
-            <h2 class="text-primary">Estudio</h2>
+            <h2 class="text-primary">@ViewData["Title"]</h2>
             <hr />
         </div>
 
@@ -30,24 +33,6 @@
 
         </div>
 
-        <div class="form-group mb-3 row">
-
-            <div class="col-md-2">
-                <label asp-for="CreatedDateTime">@labels["date"]</label>
-            </div>
-
-            <div class="col-md-10">
-
-                <div class="col-md-3">
-                    <input asp-for="CreatedDateTime" type="date" class="form-control" />
-                </div>
-                
-                <span asp-validation-for="CreatedDateTime" class="text-danger"></span>
-            </div>
-
-        </div>
-
-
         <hr />
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -55,7 +40,7 @@
                 <i class="fas fa-save"></i>
                 @labels["saveButton"]
             </button>
-            <a asp-controller="Study" asp-action="Index" class="btn btn-secondary">
+            <a asp-controller="Reactive" asp-action="Index" class="btn btn-secondary" type="button">
                 <i class="fas fa-arrow-left"></i>
                 @labels["backButton"]
             </a>

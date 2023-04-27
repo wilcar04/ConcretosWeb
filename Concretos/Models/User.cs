@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Cors;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Concretos.Models
@@ -26,5 +27,6 @@ namespace Concretos.Models
 
         [Required(ErrorMessage = "El campo de apellidos es obligatorio.")]
         public string LastNames { get; set; }
+
     }
 }

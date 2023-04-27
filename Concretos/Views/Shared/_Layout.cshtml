@@ -5,7 +5,8 @@
     {
         ["logOut"] = "Cerrar sesión",
         ["studies"] = "Estudios",
-        ["users"] = "Usuarios"
+        ["users"] = "Usuarios",
+                ["reactives"] = "Reactivos"
     };
 }
 
@@ -62,6 +63,14 @@
                             <span>
                                 <i class="fa-solid fa-chart-pie"></i>
                                 @labels["studies"]
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link side-bar-link text-dark" aria-current="page" asp-controller="Reactive" asp-action="Index">
+                            <span>
+                                <i class="fas fa-flask"></i>
+                                @labels["reactives"]
                             </span>
                         </a>
                     </li>

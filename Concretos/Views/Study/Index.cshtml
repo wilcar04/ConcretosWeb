@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Study>;
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listado de estudios";
 
     IDictionary<string, string> labels = new Dictionary<string, string>()
             {
@@ -11,7 +11,7 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Estudios Registrados</h2>
+            <h2 class="text-primary">@ViewData["Title"]</h2>
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Study" asp-action="Create" class="btn btn-primary">
@@ -27,7 +27,7 @@
     <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Nombre del estudio</th>
+                <th class="text-center">Nombre del estudio</th>
                 <th width="20%" class="text-center">Fecha</th>
             </tr>
         </thead>
@@ -35,7 +35,7 @@
             @foreach (var obj in Model)
             {
                 <tr>
-                    <td><a href="/Measure/Management?study-id=@obj.Id">@obj.Name</a></td>
+                    <td><a href="/Measure/Management/0?study-id=@obj.Id">@obj.Name</a></td>
                     <td width="20%" class="text-center">@obj.CreatedDateTime.ToString("dd/MM/yyyy")</td>
                 </tr>
 
